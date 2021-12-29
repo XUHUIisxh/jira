@@ -3,7 +3,7 @@ export const isFalsy = (value: unknown) => {
   return value === 0 ? false : !value;
 };
 
-export const cleanObject = (object:object) => {
+export const cleanObject = (object: object) => {
   const result = { ...object };
   Object.keys(result).forEach((key) => {
     // @ts-ignore
@@ -12,11 +12,11 @@ export const cleanObject = (object:object) => {
       // @ts-ignore
       delete result[key];
     }
-  }); 
+  });
   return result;
 };
 
-export const useMount = (callback:()=>void) => {
+export const useMount = (callback: () => void) => {
   useEffect(() => {
     callback();
   }, []);
@@ -34,7 +34,7 @@ export const useMount = (callback:()=>void) => {
 //     }
 // }
 
-export const useDebounce = (value:unknown, delay?:number):any => {
+export const useDebounce = <V>(value: V, delay?: number): V => {
   const [debounceValue, setDebounceValue] = useState(value);
 
   useEffect(() => {
