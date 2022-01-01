@@ -14,7 +14,7 @@ export const http = async (
 ) => {
   const config = {
     method: "GET",
-    header: {
+    headers: {
       Authorization: token ? `Bearer ${token}` : "",
       "Content-Type": data ? "application/json" : "",
     },
