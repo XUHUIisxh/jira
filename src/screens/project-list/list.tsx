@@ -29,7 +29,7 @@ export const List = ({ list, users }: ListProps) => {
           title: "负责人",
           render(value, project) {
             return (
-              <span>
+              <span key={value.id}>
                 {users.find((user) => user.id === project.personId)?.name ||
                   "未知"}
               </span>
