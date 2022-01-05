@@ -6,7 +6,7 @@ export const Row = styled.div<{
   marginBottom?: number;
 }>`
   display: flex;
-  align-item: center;
+  align-items: center;
   justify-content: ${(props) => (props.between ? "space-between" : undefined)};
   margin-bottom: ${(props) => props.marginBottom + "rem"};
   > * {
