@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { Spin, Typography } from "antd";
-import { DevTools } from "jira-dev-tool";
 
 export const Row = styled.div<{
   gap?: number | boolean;
@@ -36,9 +35,8 @@ export const FullPageLoading = () => (
   </FullPage>
 );
 
-export const FullPageErrorFallback = ({ error }: { error: Error | null }) => (
+export const FullPageErrorFallback = ({ error }: { error: Error }) => (
   <FullPage>
-    <DevTools />
-    <Typography.Text type={"danger"}>{error?.message}</Typography.Text>
+    <Typography.Text type={"danger"}>{error.message}</Typography.Text>
   </FullPage>
 );
