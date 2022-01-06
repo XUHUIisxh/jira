@@ -2,17 +2,14 @@ import React from "react";
 import { List } from "./list";
 import { SearchPanel } from "./search-panel";
 import { useState } from "react";
-import { useDebounce, useDocumentTitle } from "utils/index";
+import { useDebounce } from "utils/index";
 import styled from "@emotion/styled";
 import { Typography } from "antd";
 import { useProject } from "utils/project";
 import { useUser } from "utils/user";
-// import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet";
 
 export const ProjectListScreen = () => {
-
-  useDocumentTitle('项目列表')
-  
   // 搜索框
   const [param, setParam] = useState({
     name: "",
@@ -27,9 +24,9 @@ export const ProjectListScreen = () => {
 
   return (
     <Container>
-      {/* <Helmet>
+      <Helmet>
         <title>项目列表</title>
-      </Helmet> */}
+      </Helmet>
       <h1>项目列表</h1>
       <SearchPanel param={param} setParam={setParam} users={users || []} />
       {error ? (
