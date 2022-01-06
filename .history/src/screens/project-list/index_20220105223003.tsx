@@ -1,12 +1,16 @@
 import React from "react";
-import { List } from "./list";
+import { List, Project } from "./list";
 import { SearchPanel } from "./search-panel";
-import { useState } from "react";
-import { useDebounce } from "utils/index";
+import { useState, useEffect } from "react";
+import { cleanObject, useMount, useDebounce } from "utils/index";
+import * as qs from "qs";
+import { useHttp } from "utils/http";
 import styled from "@emotion/styled";
+import { useAsync } from "utils/use-async";
 import { Typography } from "antd";
 import { useProject } from "utils/project";
-import { useUser } from "utils/user";
+
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export const ProjectListScreen = () => {
   // 搜索框
@@ -15,20 +19,27 @@ export const ProjectListScreen = () => {
     personId: "",
   });
 
+  // 用户列表
+  const [users, setUsers] = useState([]);
+
   const debounceParam = useDebounce(param, 500);
+
+  const client = useHttp();
 
   const { data: list, error, isLoading } = useProject(debounceParam);
 
-  const { data: users } = useUser();
+  useMount(() => {
+    client("users").then(setUsers);
+  });
 
   return (
     <Container>
       <h1>项目列表</h1>
-      <SearchPanel param={param} setParam={setParam} users={users || []} />
+      <SearchPanel param={param} setParam={setParam} users={users} />
       {error ? (
         <Typography.Text type="danger">{error.message}</Typography.Text>
       ) : null}
-      <List loading={isLoading} users={users || []} dataSource={list || []} />
+      <List loading={isLoading} users={users} dataSource={list || []} />
     </Container>
   );
 };
