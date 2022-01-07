@@ -13,7 +13,13 @@ import { useUrlQueryParams } from "utils/url";
 export const ProjectListScreen = () => {
   useDocumentTitle("项目列表");
 
-  const [param,setParam] = useUrlQueryParams(["name", "personId"]);
+  // 搜索框
+  const [, setParam] = useState({
+    name: "",
+    personId: "",
+  });
+
+  const [param] = useUrlQueryParams(["name", "personId"]);
 
   const debounceParam = useDebounce(param, 500);
 
