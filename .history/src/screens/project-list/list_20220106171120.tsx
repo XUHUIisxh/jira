@@ -4,7 +4,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { User } from "./search-panel";
 
-// FIXME 把所有id都改成number类型
 export interface Project {
   id: string;
   name: string;
@@ -28,7 +27,7 @@ export const List = ({ users, ...props }: ListProps) => {
           dataIndex: "name",
           sorter: (a, b) => a.name.localeCompare(b.name),
           render(value, project) {
-            return <Link to={`${project.id}`}>{project.name}</Link>;
+            return <Link to={`/project/${project.id}`}></Link>;
           },
         },
         {

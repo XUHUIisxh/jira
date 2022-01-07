@@ -5,28 +5,21 @@ import { ReactComponent as SoftwareLogo } from "assets/software-logo.svg";
 import styled from "@emotion/styled";
 import { Row } from "components/lib";
 import { Dropdown, Menu, Button } from "antd";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Index } from "screens/project";
 
 export const AuthenticatedApp = () => {
+  const { logout, user } = useAuth();
+
   return (
     <Container>
       <PageHeader />
       <Main>
-        <Router>
-          <Routes>
-            <Route path={"/projects"} element={<ProjectListScreen />} />
-            <Route path={"/projects/:projectId/*"} element={<Index />} />
-          </Routes>
-        </Router>
+        <ProjectListScreen />
       </Main>
     </Container>
   );
 };
 
 const PageHeader = () => {
-  const { logout, user } = useAuth();
-
   return (
     <Header between={true}>
       <HeaderLeft gap={true}>
